@@ -20,6 +20,7 @@ class CreateAnswersTable extends Migration
             $table->integer("votes")->default('0');
             $table->integer("question_id");
             $table->integer("creator_id");
+            $table->integer("jawaban_tepat")->default('0');
         });
     }
 

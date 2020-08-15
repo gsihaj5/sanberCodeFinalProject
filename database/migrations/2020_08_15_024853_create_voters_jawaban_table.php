@@ -16,7 +16,7 @@ class CreateVotersJawabanTable extends Migration
         Schema::create('voters_jawaban', function (Blueprint $table) {
             $table->integer("voters_id");
             $table->integer("jawaban_id");
-            $table->integer("flag");
+            $table->timestamps();
         });
     }
 

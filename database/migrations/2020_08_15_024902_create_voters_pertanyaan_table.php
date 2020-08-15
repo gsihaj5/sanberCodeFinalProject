@@ -15,8 +15,8 @@ class CreateVotersPertanyaanTable extends Migration
     {
         Schema::create('voters_pertanyaan', function (Blueprint $table) {
             $table->integer("voters_id");
+            $table->timestamps();
             $table->integer("pertanyaan_id");
-            $table->integer("flag");
         });
     }
 

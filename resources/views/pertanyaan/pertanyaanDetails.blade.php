@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-header bg-primary text-white">{{ $pertanyaan->judul }}</div>
                 <div class="card-body pertanyaan">
-                    {{$pertanyaan->isi}}
+                    {!!$pertanyaan->isi!!}
                 </div>
                 <div class="card-footer">
                     votes: <div id = "vote_{{$pertanyaan->id}}">{{$pertanyaan->votes}} </div>
@@ -31,10 +31,12 @@
                 <div class="card-body">
                     @foreach($jawaban as $item)
                         <div class="card" href="/home">
+                        @if($item->jawaban_tepat == 1)
+                            <div class="card-body bg-success text-white" href="/home">
+                        @else
                             <div class="card-body">
-                                <p>
-                                    {{$item->isi}}
-                                </p>
+                        @endif
+                                {!!$item->isi!!}
                             </div>
                             <div class="card-footer">
                                 votes: <div id = "vote_jawaban_{{$item->id}}">{{$item->votes}} </div>
@@ -46,6 +48,14 @@
                                     onclick="downVote('<?php echo csrf_token() ?>', {{$item->id}}, 'jawaban')">
                                     Down Vote
                                 </div>
+                                @if($pertanyaan -> jawaban_tepat_id == 0)
+                                <div class="btn btn-info" 
+                                    onclick="selectAnswer('<?php echo csrf_token() ?>', 
+                                            {{$item->id}},
+                                            {{$pertanyaan->id}})">
+                                    Pilih Jawban
+                                </div>
+                                @endif
                             </div>
                         </div>
                     
@@ -74,20 +84,26 @@
             <div class="card">
                 <div class="card-header bg-primary text-white">Komentar</div>
                 <div class="card-body">
+                    @foreach($komentar as $item)
+                        <div class="card" href="/home">
+                            <div class="card-body">
+                                {!!$item->isi!!}
+                            </div>
+                        </div>
+                    @endforeach
                     
                 </div>
                 <div class="card-footer">
-                    <form action="/komentar/{{$pertanyaan->id}}" method = "POST">
-                        @csrf
-                        <input  type="textarea" name = "komentar" 
-                            placeholder = "Masukan Pertanyaan">
-                        <script>
-                                CKEDITOR.replace( 'komentar' );
-                        </script>
-                        <br>
-                        <input type = "submit" value = "Tambahkan Komentar"
-                            class = "btn btn-success">
-                    </form>
+                    <input  type="textarea" id = "komentar" 
+                        placeholder = "Masukan Pertanyaan">
+                    <script>
+                            CKEDITOR.replace( 'komentar' );
+                    </script>
+                    <div class = "btn btn-success"
+                        onclick = "postKomentar('<?php echo csrf_token() ?>', {{$pertanyaan->id}}, 'pertanyaan')"
+                    >
+                        Tambahkan Komentar
+                    </div>
                 </div>
             </div>
         </div>

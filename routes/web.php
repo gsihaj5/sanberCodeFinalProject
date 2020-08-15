@@ -31,3 +31,6 @@ Route::post('/pertanyaan/downVote/{id}', 'PertanyaanController@downVote')->name(
 Route::post('/jawaban/create/{id}', 'JawabanController@create')->name('createJawaban');
 Route::post('/jawaban/upVote/{id}', 'JawabanController@upVote')->name('upvote');
 Route::post('/jawaban/downVote/{id}', 'JawabanController@downVote')->name('downvote');
+Route::post('/jawaban/tepat/{pertanyaan_id}/{jawaban_id}', 'JawabanController@tepat')->name('tepat');
+
+Route::post('/komentar/create/{post_id}', 'KomentarController@create')->name('createKomentar');

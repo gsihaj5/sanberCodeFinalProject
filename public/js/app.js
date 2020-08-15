@@ -115,3 +115,42 @@ function postJawaban(token, pertanyaan_id){
         }
     });
  }
+
+function selectAnswer(token,id_jawaban, id_pertanyaan){
+    jQuery.ajax({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        type:'POST',
+        url:'/jawaban/tepat/'+id_pertanyaan+'/'+id_jawaban,
+        data:{
+            "_token":token
+        },
+        success:function(data) {
+            console.log(data)
+        },error:function(data){
+            console.log(data)
+        }
+    });
+}
+
+function postKomentar(token, post_id, type){
+    var isi = CKEDITOR.instances.komentar.getData()
+    var route = '/komentar/create/'+post_id
+
+    jQuery.ajax({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        type:'POST',
+        url:route,
+        data:{
+            "_token":token,
+            isi:isi,
+            type:type
+        },
+        success:function(data) {
+            console.log(data)
+        }
+    });
+}

@@ -17,8 +17,9 @@ class CreateCommentsTable extends Migration
             $table->id();
             $table->timestamps();
             $table->string("type");//pertanyaan atau jawaban
-            $table->integer("creator_id");
+            $table->string("isi");//pertanyaan atau jawaban
             $table->integer("post_id");
+            $table->integer("creator_id");
         });
     }
 
