@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     //you have to login
-    return view('welcome');
+    return redirect()->route('login');
 });
 
 Auth::routes();

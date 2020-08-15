@@ -13,7 +13,7 @@
                             <div class="card-header">{{ __($item->judul) }}</div>
                             <div class="card-body">
                                 <p>
-                                    {{$item->isi}}
+                                    {!!$item->isi!!}
                                 </p>
                                 <a class="btn btn-primary stretched-link" 
                                     href="/pertanyaan/{{$item->id}}">

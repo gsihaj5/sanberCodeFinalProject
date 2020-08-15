@@ -27,5 +27,6 @@ class HomeController extends Controller
         $pertanyaan = Pertanyaan::all();
 
         return view('home',['pertanyaan'=>$pertanyaan]);
+        //returnredirect("/login");
     }
 }
